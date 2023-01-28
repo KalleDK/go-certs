@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/tls"
+	_ "embed"
 	"fmt"
 	"log"
 	"net/http"
@@ -10,19 +11,27 @@ import (
 	"github.com/KalleDK/go-certs"
 )
 
-func main() {
+func serv() {
 	mux := http.NewServeMux()
 
-	certmanger := &certs.FileBackend{
-		CertPath: "cert.pem",
-		KeyPath:  "cert.key",
+	certmanger := certs.MultiStore{
+		Stores: []certs.Store{
+			&certs.FileStore{
+				CertPath: "cert1.pem",
+				KeyPath:  "cert1.key",
+			},
+			&certs.FileStore{
+				CertPath: "cert2.pem",
+				KeyPath:  "cert2.key",
+			},
+		},
 	}
 
 	if err := certmanger.Reload(); err != nil {
 		log.Fatal(err)
 	}
 
-	certs.Notify(certmanger, syscall.SIGHUP)
+	certs.Notify(&certmanger, syscall.SIGHUP)
 
 	tlsConf := &tls.Config{
 		GetCertificate: certmanger.GetCertificate,
@@ -36,8 +45,13 @@ func main() {
 
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(w, "pong!")
-		certs.Stop(certmanger)
+		certs.Stop(&certmanger)
 	})
 
 	srv.ListenAndServeTLS("", "")
+}
+
+func main() {
+
+	serv()
 }
