@@ -7,5 +7,6 @@ dh-golang/
 files
 
 _build
+_deb
 tmp
 golang-github-kalledk-go-certs-dev

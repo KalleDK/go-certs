@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+    - main
+
+name: Make Release
+jobs:
+  build:
+    name: Build Deb
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Deb Package
+        uses: ./.github/actions/builddeb
+      - name: Upload Package
+        env:
+          PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
+        run: |
+          set -e
+          sudo gem install package_cloud
+          for pkg in $(find ./_deb -name '*.deb')
+          do
+            package_cloud push KalleDK/debian/any/any $pkg
+          done

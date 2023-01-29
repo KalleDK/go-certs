@@ -1,0 +1,12 @@
+# action.yml
+name: 'Create Deb Package'
+author: 'Kalle M. Aagaard <alpine@k-moeller.dk>'
+description: 'Build Deb Package'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'package'  
+  color: 'blue'
