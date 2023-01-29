@@ -1,0 +1,11 @@
+*.debhelper
+*.log
+*.substvars
+.debhelper/
+debhelper-build-stamp
+dh-golang/
+files
+
+tmp
+acmednsproxy
+acmednsproxy-tools

@@ -19,4 +19,3 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description:  (library)
-TODO: long description
