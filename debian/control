@@ -1,0 +1,22 @@
+Source: golang-github-kalledk-go-certs
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: TODO <TODO>
+Section: golang
+Testsuite: autopkgtest-pkg-go
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+               golang-any
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-github-kalledk-go-certs
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-github-kalledk-go-certs.git
+Homepage: https://github.com/KalleDK/go-certs
+Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/KalleDK/go-certs
+
+Package: golang-github-kalledk-go-certs-dev
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description:  (library)
+TODO: long description
