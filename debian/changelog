@@ -1,5 +1,5 @@
-golang-github-kalledk-go-certs (0.1.0-1) UNRELEASED; urgency=medium
+golang-github-kalledk-go-certs (0.1.0-1); urgency=medium
 
-  * Initial release (Closes: TODO)
+  * Initial release 
 
- -- TODO <TODO>  Sun, 29 Jan 2023 00:50:32 +0100
+ -- Kalle M. Aagaard <deb@k-moeller.dk>  Sun, 29 Jan 2023 00:50:32 +0100

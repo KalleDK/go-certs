@@ -1,6 +1,6 @@
 Source: golang-github-kalledk-go-certs
-Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
-Uploaders: TODO <TODO>
+Maintainer: Kalle M. Aagaard <deb@k-moeller.dk>
+Uploaders: Kalle M. Aagaard <deb@k-moeller.dk>
 Section: golang
 Testsuite: autopkgtest-pkg-go
 Priority: optional

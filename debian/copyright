@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: go-certs
-Upstream-Contact: TODO
+Upstream-Contact: Kalle M. Aagaard <deb@k-moeller.dk>
 Source: https://github.com/KalleDK/go-certs
 
 Files: *
@@ -8,7 +8,7 @@ Copyright: 2023 Kalle Møller
 License: Expat
 
 Files: debian/*
-Copyright: 2023 TODO <TODO>
+Copyright: 2023 Kalle M. Aagaard <deb@k-moeller.dk>
 License: Expat
 Comment: Debian packaging is licensed under the same terms as upstream
 
