@@ -1,5 +1,13 @@
+golang-github-kalledk-go-certs (0.1.0-1.1) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * 
+
+ -- Code <deb@k-moeller.dk>  Sun, 29 Jan 2023 18:11:24 +0100
+
 golang-github-kalledk-go-certs (0.1.0-1) RELEASED; urgency=medium
 
+  [ Kalle M. Aagaard ]
   * Initial release (Closes)
 
- -- Kalle M. Aagaard <deb@k-moeller.dk>  Sun, 29 Jan 2023 00:50:32 +0100
+ -- Code <deb@k-moeller.dk>  Sun, 29 Jan 2023 18:08:54 +0100
