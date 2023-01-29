@@ -6,6 +6,6 @@ debhelper-build-stamp
 dh-golang/
 files
 
+_build
 tmp
-acmednsproxy
-acmednsproxy-tools
+golang-github-kalledk-go-certs-dev
