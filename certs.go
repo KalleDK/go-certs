@@ -4,11 +4,14 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"io/fs"
 	"log"
 	"os"
 	"os/signal"
 	"sync"
 )
+
+var FS = os.DirFS(".")
 
 type Reloader interface {
 	Reload() error
@@ -32,7 +35,7 @@ func (ms *MultiStore) Reload() (err error) {
 			if err == nil {
 				err = errors.New("error while reloading multiple stores")
 			}
-			err = fmt.Errorf("%w; %w", err, s_err)
+			err = fmt.Errorf("%v; %v", err, s_err)
 		}
 	}
 	return err
@@ -52,14 +55,9 @@ func (ms *MultiStore) GetCertificateNoDefault(clientHello *tls.ClientHelloInfo) 
 }
 
 func (ms *MultiStore) GetCertificate(clientHello *tls.ClientHelloInfo) (*tls.Certificate, error) {
-	for _, store := range ms.Stores {
-		cert, err := store.GetCertificateNoDefault(clientHello)
-		if err != nil {
-			return nil, err
-		}
-		if cert != nil {
-			return cert, nil
-		}
+	cert, err := ms.GetCertificateNoDefault(clientHello)
+	if cert != nil || err != nil {
+		return cert, err
 	}
 	if len(ms.Stores) < 1 {
 		return nil, errors.New("no cert stores")
@@ -90,8 +88,20 @@ func NewFileStore(certPath, keyPath string) (cr *FileStore, err error) {
 	return cr, nil
 }
 
+func loadX509KeyPair(certFile, keyFile string) (tls.Certificate, error) {
+	certPEMBlock, err := fs.ReadFile(FS, certFile)
+	if err != nil {
+		return tls.Certificate{}, err
+	}
+	keyPEMBlock, err := fs.ReadFile(FS, keyFile)
+	if err != nil {
+		return tls.Certificate{}, err
+	}
+	return tls.X509KeyPair(certPEMBlock, keyPEMBlock)
+}
+
 func (cr *FileStore) Reload() (err error) {
-	cert, err := tls.LoadX509KeyPair(cr.CertPath, cr.KeyPath)
+	cert, err := loadX509KeyPair(cr.CertPath, cr.KeyPath)
 	if err != nil {
 		return err
 	}
