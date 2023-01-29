@@ -1,5 +1,5 @@
-golang-github-kalledk-go-certs (0.1.0-1); urgency=medium
+golang-github-kalledk-go-certs (0.1.0-1) RELEASED; urgency=medium
 
-  * Initial release 
+  * Initial release (Closes)
 
  -- Kalle M. Aagaard <deb@k-moeller.dk>  Sun, 29 Jan 2023 00:50:32 +0100
